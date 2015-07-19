@@ -74,10 +74,10 @@ Meteor.methods
 
     Tasks.update taskId, {$set: {checked}}
 
-  setPrivate: (taskId, private) ->
+  setPrivate: (taskId, setToPrivate) ->
     task = Tasks.findOne taskId
 
     if task.private and task.owner isnt Meteor.userId()
       throw new Meteor.Error 'not-authorized'
 
-    Tasks.update taskId, {$set: {private}}
+    Tasks.update taskId, {$set: {private: setToPrivate}}
